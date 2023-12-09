@@ -2,23 +2,19 @@ import readlineSync from 'readline-sync';
 
 let count = 0;
 
+const isEven = (number) => (number % 2 === 0 ? 'yes' : 'no');
+
 const checkAnswer = (answer, number, userName) => {
-  if (number % 2 === 0 && answer === 'yes') {
+  const correctAnswer = isEven(number);
+  let functionResult = false;
+  if (correctAnswer === answer) {
     console.log('Correct!');
-  } if (number % 2 && answer === 'yes') {
-    console.log(`"'yes' is wrong answer ;(. Correct answer was 'no'. \nLet's try again, ${userName}!"`);
-    return;
-  } if (number % 2 === 0 && answer === 'no') {
-    console.log(`"'yes' is wrong answer ;(. Correct answer was 'no'. \nLet's try again, ${userName}!"`);
-    return;
-  } if (answer !== 'yes' && answer !== 'no') {
-    console.log(`"'yes' is wrong answer ;(. Correct answer was 'no'. \nLet's try again, ${userName}!"`);
-    return;
-  } if (number % 2 && answer === 'no') {
-    console.log('Correct!');
-  } if (count === 2) {
-    console.log(`'Congratulations, ${userName}'`);
+    functionResult = true;
+  } else {
+    console.log(`"'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \nLet's try again, ${userName}!"`);
+    functionResult = false;
   }
+  return functionResult;
 };
 
 const gameEven = () => {
@@ -29,7 +25,12 @@ const gameEven = () => {
     const number = Math.round(Math.random() * 50);
     console.log(`Question: ${number}`);
     const answer = readlineSync.question('Your answer: ');
-    checkAnswer(answer, number, userName);
+    if (checkAnswer(answer, number, userName) === false) {
+      break;
+    }
+    if (count === 2) {
+      console.log(`'Congratulations, ${userName}'`);
+    }
     count += 1;
   }
 };
