@@ -1,33 +1,42 @@
 import readlineSync from 'readline-sync';
 
+const makeRandomParams = () => {
+  const operators = ['+', '-', '*'];
+  const randomOp = operators[Math.floor(Math.random() * operators.length)];
+  const number1 = Math.round(Math.random() * 50);
+  const number2 = Math.round(Math.random() * 50);
+
+  return [randomOp, number1, number2];
+};
+
+const processCalculation = (randomParams) => {
+  let result;
+  switch (randomParams[0]) {
+    case '+':
+      result = randomParams[1] + randomParams[2];
+      break;
+    case '-':
+      result = randomParams[1] - randomParams[2];
+      break;
+    case '*':
+      result = randomParams[1] * randomParams[2];
+      break;
+    default:
+      result = 0;
+  }
+
+  return result;
+};
+
 const gameCalc = () => {
   console.log('What is the result of the expression?');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 
   for (let i = 0; i < 3; i += 1) {
-    const operators = ['+', '-', '*'];
-    const randomOp = operators[Math.floor(Math.random() * operators.length)];
-    const number1 = Math.round(Math.random() * 50);
-    const number2 = Math.round(Math.random() * 50);
-
-    let result;
-
-    switch (randomOp) {
-      case '+':
-        result = number1 + number2;
-        break;
-      case '-':
-        result = number1 - number2;
-        break;
-      case '*':
-        result = number1 * number2;
-        break;
-      default:
-        return;
-    }
-
-    console.log(`Question: ${number1} ${randomOp} ${number2}`);
+    const randomParams = makeRandomParams();
+    const result = processCalculation(randomParams);
+    console.log(`Question: ${randomParams[1]} ${randomParams[0]} ${randomParams[2]}`);
     const answer = readlineSync.question('Your answer: ');
 
     if (Number(answer) === result) {
