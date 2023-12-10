@@ -1,5 +1,7 @@
 import readlineSync from 'readline-sync';
 
+let userName;
+
 const makeRandomParams = () => {
   const operators = ['+', '-', '*'];
   const randomOp = operators[Math.floor(Math.random() * operators.length)];
@@ -28,9 +30,21 @@ const processCalculation = (randomParams) => {
   return result;
 };
 
+const resultCheck = (answer, result) => {
+  let correct = true;
+  if (Number(answer) === result) {
+    console.log('Correct!');
+  } else {
+    correct = false;
+    console.log(`'${answer}' is the wrong answer ;(. Correct answer was '${result}'. \nLet's try again, ${userName}!`);
+  }
+
+  return correct;
+};
+
 const gameCalc = () => {
   console.log('What is the result of the expression?');
-  const userName = readlineSync.question('May I have your name? ');
+  userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 
   for (let i = 0; i < 3; i += 1) {
@@ -39,10 +53,7 @@ const gameCalc = () => {
     console.log(`Question: ${randomParams[1]} ${randomParams[0]} ${randomParams[2]}`);
     const answer = readlineSync.question('Your answer: ');
 
-    if (Number(answer) === result) {
-      console.log('Correct!');
-    } else {
-      console.log(`'${answer}' is the wrong answer ;(. Correct answer was '${result}'. \nLet's try again, ${userName}!`);
+    if (resultCheck(answer, result) === false) {
       break;
     }
 
