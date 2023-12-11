@@ -14,7 +14,7 @@ const gameCalc = () => {
     console.log(`Question: ${randomParams[1]} ${randomParams[0]} ${randomParams[2]}`);
     const answer = readlineSync.question('Your answer: ');
 
-    if (resultCheckGameCalc(answer, result) === false) {
+    if (resultCheckGameCalc(answer, result, userName) === false) {
       break;
     }
 
