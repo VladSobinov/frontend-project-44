@@ -62,6 +62,21 @@ const resultCheckGameCalc = (answer, result, userName) => {
   return correct;
 };
 
+const resultNod = (randomParams) => {
+  let a = randomParams[1];
+  let b = randomParams[2];
+  while (a !== 0 && b !== 0) {
+    if (a > b) {
+      a %= b;
+    } else {
+      b %= a;
+    }
+  }
+  return a + b;
+};
+
 export {
-  checkAnswerGameEven, getName, makeRandomParams, processCalculation, resultCheckGameCalc,
+  checkAnswerGameEven,
+  getName,
+  makeRandomParams, processCalculation, resultCheckGameCalc, resultNod,
 };
