@@ -1,5 +1,7 @@
+import readlineSync from 'readline-sync';
+
 const isEven = (number) => (number % 2 === 0 ? 'yes' : 'no');
-const checkAnswer = (answer, number, userName) => {
+const checkAnswerGameEven = (answer, number, userName) => {
   const correctAnswer = isEven(number);
   let functionResult = false;
   if (correctAnswer === answer) {
@@ -12,5 +14,54 @@ const checkAnswer = (answer, number, userName) => {
   return functionResult;
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { checkAnswer };
+const getName = (startMessage) => {
+  console.log(startMessage);
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+
+  return userName;
+};
+
+const makeRandomParams = () => {
+  const operators = ['+', '-', '*'];
+  const randomOp = operators[Math.floor(Math.random() * operators.length)];
+  const number1 = Math.round(Math.random() * 50);
+  const number2 = Math.round(Math.random() * 50);
+
+  return [randomOp, number1, number2];
+};
+
+const processCalculation = (randomParams) => {
+  let result;
+  switch (randomParams[0]) {
+    case '+':
+      result = randomParams[1] + randomParams[2];
+      break;
+    case '-':
+      result = randomParams[1] - randomParams[2];
+      break;
+    case '*':
+      result = randomParams[1] * randomParams[2];
+      break;
+    default:
+      result = 0;
+  }
+
+  return result;
+};
+
+const resultCheckGameCalc = (answer, result, userName) => {
+  let correct = true;
+  if (Number(answer) === result) {
+    console.log('Correct!');
+  } else {
+    correct = false;
+    console.log(`'${answer}' is the wrong answer ;(. Correct answer was '${result}'. \nLet's try again, ${userName}!`);
+  }
+
+  return correct;
+};
+
+export {
+  checkAnswerGameEven, getName, makeRandomParams, processCalculation, resultCheckGameCalc,
+};
