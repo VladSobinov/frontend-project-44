@@ -1,9 +1,22 @@
 import readlineSync from 'readline-sync';
 import {
-  getName, makeRandomParams, resultCheckGameCalc, resultNod,
+  getName, makeRandomParams, resultCheckGame,
 } from '../index.js';
 
 let userName;
+
+const resultNod = (randomParams) => {
+  let a = randomParams[1];
+  let b = randomParams[2];
+  while (a !== 0 && b !== 0) {
+    if (a > b) {
+      a %= b;
+    } else {
+      b %= a;
+    }
+  }
+  return a + b;
+};
 
 const gameGcd = () => {
   userName = getName('Welcome to the Brain Games! \nFind the greatest common divisor of given numbers.');
@@ -14,7 +27,7 @@ const gameGcd = () => {
     console.log(`Question: ${randomParams[1]} ${randomParams[2]}`);
     const answer = readlineSync.question('Your answer: ');
 
-    if (resultCheckGameCalc(answer, result, userName) === false) {
+    if (resultCheckGame(answer, result, userName) === false) {
       break;
     }
 
