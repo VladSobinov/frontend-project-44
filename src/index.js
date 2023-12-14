@@ -1,9 +1,10 @@
 import readlineSync from 'readline-sync';
 
 const getName = (startMessage) => {
-  console.log(startMessage);
+  console.log('Welcome to the Brain Games!');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
+  console.log(startMessage);
 
   return userName;
 };
@@ -17,7 +18,7 @@ const makeRandomParams = () => {
   return [randomOp, number1, number2];
 };
 
-const resultCheckGame = (answer, result, userName) => {
+const checkAnswerNum = (answer, result, userName) => {
   let correct = true;
   if (Number(answer) === result) {
     console.log('Correct!');
@@ -29,7 +30,7 @@ const resultCheckGame = (answer, result, userName) => {
   return correct;
 };
 
-const checkAnswer = (answer, correctAnswer, userName) => {
+const checkAnswerStr = (answer, correctAnswer, userName) => {
   let functionResult = false;
   if (correctAnswer === answer) {
     console.log('Correct!');
@@ -57,5 +58,5 @@ const gameBody = (userName, gameType) => {
 
 export {
   getName,
-  makeRandomParams, resultCheckGame, checkAnswer, gameBody,
+  makeRandomParams, checkAnswerNum, checkAnswerStr, gameBody,
 };

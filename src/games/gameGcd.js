@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 import {
-  getName, makeRandomParams, resultCheckGame,
+  getName, makeRandomParams, checkAnswerNum,
 } from '../index.js';
 
 let userName;
@@ -27,7 +27,7 @@ const gameGcd = () => {
     console.log(`Question: ${randomParams[1]} ${randomParams[2]}`);
     const answer = readlineSync.question('Your answer: ');
 
-    if (resultCheckGame(answer, result, userName) === false) {
+    if (checkAnswerNum(answer, result, userName) === false) {
       break;
     }
 

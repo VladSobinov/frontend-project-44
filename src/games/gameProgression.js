@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import { getName, resultCheckGame } from '../index.js';
+import { getName, checkAnswerNum } from '../index.js';
 
 let userName;
 
@@ -25,7 +25,7 @@ const gameProgression = () => {
     console.log(`Question: ${randomMassive.join(' ')}`);
     const answer = readlineSync.question('Your answer: ');
 
-    if (resultCheckGame(answer, result, userName) === false) {
+    if (checkAnswerNum(answer, result, userName) === false) {
       break;
     }
 

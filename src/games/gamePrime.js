@@ -1,4 +1,4 @@
-import { getName, gameBody, checkAnswer } from '../index.js';
+import { getName, gameBody, checkAnswerStr } from '../index.js';
 
 let userName;
 
@@ -12,7 +12,7 @@ const isPrime = (number) => {
 };
 const checkAnswerGamePrime = (answer, number) => {
   const correctAnswer = isPrime(number);
-  return checkAnswer(answer, correctAnswer, userName);
+  return checkAnswerStr(answer, correctAnswer, userName);
 };
 
 const gamePrime = () => {
