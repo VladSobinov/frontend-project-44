@@ -3,9 +3,17 @@ import { getName, makeRandomParams } from '../index.js';
 
 let userName;
 
-const isEven = (number) => (number % 2 === 0 ? 'yes' : 'no');
-const checkAnswerGameEven = (answer, number) => {
-  const correctAnswer = isEven(number);
+const isPrime = (number) => {
+  if (number <= 1) { return 'no'; }
+
+  for (let i = 2; i * i <= number; i += 1) {
+    if (number % i === 0) { return 'no'; }
+  }
+  return 'yes';
+};
+
+const checkAnswerGamePrime = (answer, number) => {
+  const correctAnswer = isPrime(number);
   let functionResult = false;
   if (correctAnswer === answer) {
     console.log('Correct!');
@@ -17,14 +25,14 @@ const checkAnswerGameEven = (answer, number) => {
   return functionResult;
 };
 
-const gameEven = () => {
-  userName = getName('Welcome to the Brain Games! \nAnswer "yes" if the number is even, otherwise answer "no".');
+const gamePrime = () => {
+  userName = getName('Welcome to the Brain Games! \nAnswer "yes" if given number is prime. Otherwise answer "no".');
 
   for (let i = 0; i < 3; i += 1) {
     const randomParams = makeRandomParams();
     console.log(`Question: ${randomParams[1]}`);
     const answer = readlineSync.question('Your answer: ');
-    if (checkAnswerGameEven(answer, randomParams[1], userName) === false) {
+    if (checkAnswerGamePrime(answer, randomParams[1], userName) === false) {
       break;
     }
     if (i === 2) {
@@ -33,4 +41,4 @@ const gameEven = () => {
   }
 };
 
-export default gameEven;
+export default gamePrime;
