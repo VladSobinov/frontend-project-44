@@ -15,7 +15,7 @@ const gameStep = (firstNum) => {
 };
 
 const gameProgression = () => {
-  userName = getName('Welcome to the Brain Games! \nWhat number is missing in the progression?');
+  userName = getName('What number is missing in the progression?');
 
   for (let i = 0; i < 3; i += 1) {
     const randomMassive = gameStep(Math.round(Math.random() * 50));

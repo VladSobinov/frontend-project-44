@@ -25,7 +25,7 @@ const processCalculation = (randomParams) => {
 };
 
 const gameCalc = () => {
-  userName = getName('Welcome to the Brain Games! \nWhat is the result of the expression?');
+  userName = getName('What is the result of the expression?');
 
   for (let i = 0; i < 3; i += 1) {
     const randomParams = makeRandomParams();

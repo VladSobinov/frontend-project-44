@@ -16,7 +16,7 @@ const checkAnswerGamePrime = (answer, number) => {
 };
 
 const gamePrime = () => {
-  userName = getName('Welcome to the Brain Games! \nAnswer "yes" if given number is prime. Otherwise answer "no".');
+  userName = getName('Answer "yes" if given number is prime. Otherwise answer "no".');
 
   gameBody(userName, checkAnswerGamePrime);
 };

@@ -19,7 +19,7 @@ const resultNod = (randomParams) => {
 };
 
 const gameGcd = () => {
-  userName = getName('Welcome to the Brain Games! \nFind the greatest common divisor of given numbers.');
+  userName = getName('Find the greatest common divisor of given numbers.');
 
   for (let i = 0; i < 3; i += 1) {
     const randomParams = makeRandomParams();
