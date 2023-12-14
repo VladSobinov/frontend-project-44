@@ -51,7 +51,7 @@ const gameBody = (userName, gameType) => {
       break;
     }
     if (i === 2) {
-      console.log(`Congratulations, ${userName}`);
+      console.log(`Congratulations, ${userName}!`);
     }
   }
 };
