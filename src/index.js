@@ -29,7 +29,33 @@ const resultCheckGame = (answer, result, userName) => {
   return correct;
 };
 
+const checkAnswer = (answer, correctAnswer, userName) => {
+  let functionResult = false;
+  if (correctAnswer === answer) {
+    console.log('Correct!');
+    functionResult = true;
+  } else {
+    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'. \nLet's try again, ${userName}!"`);
+    functionResult = false;
+  }
+  return functionResult;
+};
+
+const gameBody = (userName, gameType) => {
+  for (let i = 0; i < 3; i += 1) {
+    const randomParams = Math.round(Math.random() * 50);
+    console.log(`Question: ${randomParams}`);
+    const answer = readlineSync.question('Your answer: ');
+    if (gameType(answer, randomParams, userName) === false) {
+      break;
+    }
+    if (i === 2) {
+      console.log(`'Congratulations, ${userName}'`);
+    }
+  }
+};
+
 export {
   getName,
-  makeRandomParams, resultCheckGame,
+  makeRandomParams, resultCheckGame, checkAnswer, gameBody,
 };
