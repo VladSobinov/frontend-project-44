@@ -34,16 +34,16 @@ make brain-progression
 ```
 
 # Test brain calc
-[![asciicast](https://asciinema.org/a/RsExTfRjygPvwPE9mTqMOI3rA)]
+[![asciicast](https://asciinema.org/a/RsExTfRjygPvwPE9mTqMOI3rA.svg)](https://asciinema.org/a/RsExTfRjygPvwPE9mTqMOI3rA)
 
 # Test brain even
-[![asciicast](https://asciinema.org/a/13DPLNsH2jT9AO80X0t1m019a)]
+[![asciicast](https://asciinema.org/a/13DPLNsH2jT9AO80X0t1m019a.svg)](https://asciinema.org/a/13DPLNsH2jT9AO80X0t1m019a)
 
 # Test brain gcd
-[![asciicast](https://asciinema.org/a/RzwFhSTCGozKJaYxsVuEo8iFe)]
+[![asciicast](https://asciinema.org/a/RzwFhSTCGozKJaYxsVuEo8iFe.svg)](https://asciinema.org/a/RzwFhSTCGozKJaYxsVuEo8iFe)
 
 # Test brain prime
-[![asciicast](https://asciinema.org/a/SZIg7tDRf7kiI6JnZUJ7a46Xh)]
+[![asciicast](https://asciinema.org/a/SZIg7tDRf7kiI6JnZUJ7a46Xh.svg)](https://asciinema.org/a/SZIg7tDRf7kiI6JnZUJ7a46Xh)
 
 # Test brain progression
-[![asciicast](https://asciinema.org/a/jjFYaysl5jumQItZwGz1JxBqG)]
+[![asciicast](https://asciinema.org/a/jjFYaysl5jumQItZwGz1JxBqG.svg)](https://asciinema.org/a/jjFYaysl5jumQItZwGz1JxBqG)
