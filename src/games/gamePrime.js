@@ -1,6 +1,4 @@
-import { getName, gameBody, checkAnswerStr } from '../index.js';
-
-let userName;
+import { gameBody, checkAnswerStr } from '../index.js';
 
 const isPrime = (number) => {
   if (number <= 1) { return 'no'; }
@@ -10,15 +8,13 @@ const isPrime = (number) => {
   }
   return 'yes';
 };
-const checkAnswerGamePrime = (answer, number) => {
+const checkAnswerGamePrime = (answer, number, userName) => {
   const correctAnswer = isPrime(number);
   return checkAnswerStr(answer, correctAnswer, userName);
 };
 
 const gamePrime = () => {
-  userName = getName('Answer "yes" if given number is prime. Otherwise answer "no".');
-
-  gameBody(userName, checkAnswerGamePrime);
+  gameBody(checkAnswerGamePrime, 'Answer "yes" if given number is prime. Otherwise answer "no".', 'prime');
 };
 
 export default gamePrime;

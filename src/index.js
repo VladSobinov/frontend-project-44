@@ -1,12 +1,9 @@
 import readlineSync from 'readline-sync';
+import { randomNumber } from './utils.js';
 
-const getName = (startMessage) => {
-  console.log('Welcome to the Brain Games!');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log(startMessage);
-
-  return userName;
+const numberOfRounds = (number) => {
+  const rounds = number;
+  return rounds;
 };
 
 const makeRandomParams = () => {
@@ -42,21 +39,106 @@ const checkAnswerStr = (answer, correctAnswer, userName) => {
   return functionResult;
 };
 
-const gameBody = (userName, gameType) => {
-  for (let i = 0; i < 3; i += 1) {
-    const randomParams = Math.round(Math.random() * 50);
-    console.log(`Question: ${randomParams}`);
-    const answer = readlineSync.question('Your answer: ');
-    if (gameType(answer, randomParams, userName) === false) {
+const processCalculation = (randomParams) => {
+  let result;
+  switch (randomParams[0]) {
+    case '+':
+      result = randomParams[1] + randomParams[2];
       break;
-    }
-    if (i === 2) {
-      console.log(`Congratulations, ${userName}!`);
+    case '-':
+      result = randomParams[1] - randomParams[2];
+      break;
+    case '*':
+      result = randomParams[1] * randomParams[2];
+      break;
+    default:
+      result = 0;
+  }
+
+  return result;
+};
+
+const gameStep = (firstNum) => {
+  const size = Math.round(Math.random() * (10 - 5) + 5);
+  const array = [];
+  const randomProgressionNumber = Math.round(Math.random() * (8 - 2) + 2);
+  array[0] = firstNum;
+  for (let i = 1; i < size; i += 1) {
+    array[i] = array[i - 1] + randomProgressionNumber;
+  }
+  return array.sort((a, b) => a - b);
+};
+
+const resultNod = (randomParams) => {
+  let a = randomParams[1];
+  let b = randomParams[2];
+  while (a !== 0 && b !== 0) {
+    if (a > b) {
+      a %= b;
+    } else {
+      b %= a;
     }
   }
+  return a + b;
+};
+
+const gameBody = (gameType, gameDescription, gameName) => {
+  console.log('Welcome to the Brain Games!');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  console.log(gameDescription);
+
+  if (gameName === 'even' || gameName === 'prime') {
+    for (let i = 0; i < numberOfRounds(3); i += 1) {
+      const randomParams = randomNumber(50);
+      console.log(`Question: ${randomParams}`);
+      const answer = readlineSync.question('Your answer: ');
+      if (gameType(answer, randomParams, userName) === false) {
+        return;
+      }
+    }
+  }
+  if (gameName === 'calc') {
+    for (let i = 0; i < numberOfRounds(3); i += 1) {
+      const randomParams = makeRandomParams();
+      const result = processCalculation(randomParams);
+      console.log(`Question: ${randomParams[1]} ${randomParams[0]} ${randomParams[2]}`);
+      const answer = readlineSync.question('Your answer: ');
+
+      if (checkAnswerNum(answer, result, userName) === false) {
+        return;
+      }
+    }
+  }
+  if (gameName === 'progression') {
+    for (let i = 0; i < numberOfRounds(3); i += 1) {
+      const randomMassive = gameStep(Math.round(Math.random() * 50));
+      const randomIndex = Math.floor(Math.random() * randomMassive.length);
+      const result = randomMassive[randomIndex];
+      randomMassive[randomIndex] = '..';
+      console.log(`Question: ${randomMassive.join(' ')}`);
+      const answer = readlineSync.question('Your answer: ');
+
+      if (checkAnswerNum(answer, result, userName) === false) {
+        return;
+      }
+    }
+  }
+  if (gameName === 'gcd') {
+    for (let i = 0; i < numberOfRounds(3); i += 1) {
+      const randomParams = makeRandomParams();
+      const result = resultNod(randomParams);
+      console.log(`Question: ${randomParams[1]} ${randomParams[2]}`);
+      const answer = readlineSync.question('Your answer: ');
+
+      if (checkAnswerNum(answer, result, userName) === false) {
+        return;
+      }
+    }
+  }
+  console.log(`Congratulations, ${userName}!`);
 };
 
 export {
-  getName,
-  makeRandomParams, checkAnswerNum, checkAnswerStr, gameBody,
+  makeRandomParams, checkAnswerNum, checkAnswerStr, gameBody, numberOfRounds,
 };
