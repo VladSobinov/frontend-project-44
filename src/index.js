@@ -15,21 +15,9 @@ const makeRandomParams = () => {
   return [randomOp, number1, number2];
 };
 
-const checkAnswerNum = (answer, result, userName) => {
-  let correct = true;
-  if (Number(answer) === result) {
-    console.log('Correct!');
-  } else {
-    correct = false;
-    console.log(`'${answer}' is the wrong answer ;(. Correct answer was '${result}'. \nLet's try again, ${userName}!`);
-  }
-
-  return correct;
-};
-
-const checkAnswerStr = (answer, correctAnswer, userName) => {
+const checkAnswer = (answer, correctAnswer, userName) => {
   let functionResult = false;
-  if (correctAnswer === answer) {
+  if (String(correctAnswer) === answer) {
     console.log('Correct!');
     functionResult = true;
   } else {
@@ -82,63 +70,81 @@ const resultNod = (randomParams) => {
   return a + b;
 };
 
+const gameEvenAndPrime = (gameType, userName) => {
+  const randomParams = randomNumber(50);
+  console.log(`Question: ${randomParams}`);
+  const answer = readlineSync.question('Your answer: ');
+
+  if (gameType(answer, randomParams, userName) === false) {
+    return false;
+  }
+  return true;
+};
+
+const gameCalc = (gameType, userName) => {
+  const randomParams = makeRandomParams();
+  const correctAnswer = processCalculation(randomParams);
+  console.log(`Question: ${randomParams[1]} ${randomParams[0]} ${randomParams[2]}`);
+  const answer = readlineSync.question('Your answer: ');
+
+  if (gameType(answer, correctAnswer, userName) === false) {
+    return false;
+  }
+  return true;
+};
+
+const gameProgression = (gameType, userName) => {
+  const randomMassive = gameStep(randomNumber(50));
+  const randomIndex = Math.floor(Math.random() * randomMassive.length);
+  const correctAnswer = randomMassive[randomIndex];
+  randomMassive[randomIndex] = '..';
+  console.log(`Question: ${randomMassive.join(' ')}`);
+  const answer = readlineSync.question('Your answer: ');
+
+  if (gameType(answer, correctAnswer, userName) === false) {
+    return false;
+  }
+  return true;
+};
+
+const gameGcd = (gameType, userName) => {
+  const randomParams = makeRandomParams();
+  const correctAnswer = resultNod(randomParams);
+  console.log(`Question: ${randomParams[1]} ${randomParams[2]}`);
+  const answer = readlineSync.question('Your answer: ');
+
+  if (gameType(answer, correctAnswer, userName) === false) {
+    return false;
+  }
+  return true;
+};
+
 const gameBody = (gameType, gameDescription, gameName) => {
   console.log('Welcome to the Brain Games!');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
   console.log(gameDescription);
 
-  if (gameName === 'even' || gameName === 'prime') {
-    for (let i = 0; i < numberOfRounds(3); i += 1) {
-      const randomParams = randomNumber(50);
-      console.log(`Question: ${randomParams}`);
-      const answer = readlineSync.question('Your answer: ');
-      if (gameType(answer, randomParams, userName) === false) {
+  for (let rounds = 0; rounds < numberOfRounds(3); rounds += 1) {
+    switch (gameName) {
+      case 'even':
+      case 'prime':
+        if (gameEvenAndPrime(gameType, userName) === false) return;
+        break;
+      case 'calc':
+        if (gameCalc(gameType, userName) === false) return;
+        break;
+      case 'progression':
+        if (gameProgression(gameType, userName) === false) return;
+        break;
+      case 'gcd':
+        if (gameGcd(gameType, userName) === false) return;
+        break;
+      default:
         return;
-      }
-    }
-  }
-  if (gameName === 'calc') {
-    for (let i = 0; i < numberOfRounds(3); i += 1) {
-      const randomParams = makeRandomParams();
-      const result = processCalculation(randomParams);
-      console.log(`Question: ${randomParams[1]} ${randomParams[0]} ${randomParams[2]}`);
-      const answer = readlineSync.question('Your answer: ');
-
-      if (checkAnswerNum(answer, result, userName) === false) {
-        return;
-      }
-    }
-  }
-  if (gameName === 'progression') {
-    for (let i = 0; i < numberOfRounds(3); i += 1) {
-      const randomMassive = gameStep(Math.round(Math.random() * 50));
-      const randomIndex = Math.floor(Math.random() * randomMassive.length);
-      const result = randomMassive[randomIndex];
-      randomMassive[randomIndex] = '..';
-      console.log(`Question: ${randomMassive.join(' ')}`);
-      const answer = readlineSync.question('Your answer: ');
-
-      if (checkAnswerNum(answer, result, userName) === false) {
-        return;
-      }
-    }
-  }
-  if (gameName === 'gcd') {
-    for (let i = 0; i < numberOfRounds(3); i += 1) {
-      const randomParams = makeRandomParams();
-      const result = resultNod(randomParams);
-      console.log(`Question: ${randomParams[1]} ${randomParams[2]}`);
-      const answer = readlineSync.question('Your answer: ');
-
-      if (checkAnswerNum(answer, result, userName) === false) {
-        return;
-      }
     }
   }
   console.log(`Congratulations, ${userName}!`);
 };
 
-export {
-  makeRandomParams, checkAnswerNum, checkAnswerStr, gameBody, numberOfRounds,
-};
+export { checkAnswer, gameBody };

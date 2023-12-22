@@ -1,4 +1,4 @@
-import { gameBody, checkAnswerStr } from '../index.js';
+import { gameBody, checkAnswer } from '../index.js';
 
 const isPrime = (number) => {
   if (number <= 1) { return 'no'; }
@@ -8,10 +8,8 @@ const isPrime = (number) => {
   }
   return 'yes';
 };
-const checkAnswerGamePrime = (answer, number, userName) => {
-  const correctAnswer = isPrime(number);
-  return checkAnswerStr(answer, correctAnswer, userName);
-};
+// eslint-disable-next-line max-len
+const checkAnswerGamePrime = (answer, number, userName) => checkAnswer(answer, isPrime(number), userName);
 
 const gamePrime = () => {
   gameBody(checkAnswerGamePrime, 'Answer "yes" if given number is prime. Otherwise answer "no".', 'prime');

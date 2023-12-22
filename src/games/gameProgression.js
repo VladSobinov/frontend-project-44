@@ -1,7 +1,7 @@
-import { gameBody, checkAnswerNum } from '../index.js';
+import { gameBody, checkAnswer } from '../index.js';
 
 const gameProgression = () => {
-  gameBody(checkAnswerNum, 'What number is missing in the progression?', 'progression');
+  gameBody(checkAnswer, 'What number is missing in the progression?', 'progression');
 };
 
 export default gameProgression;

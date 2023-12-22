@@ -1,10 +1,8 @@
-import { gameBody, checkAnswerStr } from '../index.js';
+import { gameBody, checkAnswer } from '../index.js';
 
 const isEven = (number) => (number % 2 === 0 ? 'yes' : 'no');
-const checkAnswerGameEven = (answer, number, userName) => {
-  const correctAnswer = isEven(number);
-  return checkAnswerStr(answer, correctAnswer, userName);
-};
+// eslint-disable-next-line max-len
+const checkAnswerGameEven = (answer, number, userName) => checkAnswer(answer, isEven(number), userName);
 
 const gameEven = () => {
   gameBody(checkAnswerGameEven, 'Answer "yes" if the number is even, otherwise answer "no".', 'even');
