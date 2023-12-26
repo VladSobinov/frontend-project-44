@@ -1,11 +1,16 @@
-import { gameBody, checkAnswer } from '../index.js';
+import gameBody from '../index.js';
+import getRandomNumber from '../utils.js';
 
-const isEven = (number) => (number % 2 === 0 ? 'yes' : 'no');
-// eslint-disable-next-line max-len
-const checkAnswerGameEven = (answer, number, userName) => checkAnswer(answer, isEven(number), userName);
+const gameDescription = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-const gameEven = () => {
-  gameBody(checkAnswerGameEven, 'Answer "yes" if the number is even, otherwise answer "no".', 'even');
+const isEven = (number) => number % 2 === 0;
+
+const gameFunction = () => {
+  const question = getRandomNumber(1, 50);
+  const correctAnswer = isEven(question) ? 'yes' : 'no';
+  return [question, correctAnswer];
 };
 
-export default gameEven;
+export default () => {
+  gameBody(gameDescription, gameFunction);
+};

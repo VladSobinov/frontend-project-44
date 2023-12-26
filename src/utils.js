@@ -1,7 +1,6 @@
-const randomNumber = (number) => {
-  const num = Math.floor(Math.random() * number);
-  return num;
+const getRandomNumber = (min, max) => {
+  const num = min + Math.random() * (max + 1 - min);
+  return Math.floor(num);
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { randomNumber };
+export default getRandomNumber;

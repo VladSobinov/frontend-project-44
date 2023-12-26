@@ -1,18 +1,21 @@
-import { gameBody, checkAnswer } from '../index.js';
+import gameBody from '../index.js';
+import getRandomNumber from '../utils.js';
 
 const isPrime = (number) => {
-  if (number <= 1) { return 'no'; }
-
-  for (let i = 2; i * i <= number; i += 1) {
-    if (number % i === 0) { return 'no'; }
+  for (let a = 2, b = Math.sqrt(number); a <= b; a += 1) {
+    if (number % a === 0) return false;
   }
-  return 'yes';
-};
-// eslint-disable-next-line max-len
-const checkAnswerGamePrime = (answer, number, userName) => checkAnswer(answer, isPrime(number), userName);
-
-const gamePrime = () => {
-  gameBody(checkAnswerGamePrime, 'Answer "yes" if given number is prime. Otherwise answer "no".', 'prime');
+  return number > 1;
 };
 
-export default gamePrime;
+const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
+const gameFunction = () => {
+  const question = getRandomNumber(1, 50);
+  const correctAnswer = isPrime(question) ? 'yes' : 'no';
+  return [question, correctAnswer];
+};
+
+export default () => {
+  gameBody(gameDescription, gameFunction);
+};
