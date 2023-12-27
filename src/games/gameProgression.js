@@ -19,7 +19,7 @@ const gameFunction = () => {
   const randomIndex = getRandomNumber(randomMassive.length, 0);
 
   const correctAnswer = String(randomMassive[randomIndex]);
-  randomMassive[randomIndex - 1] = '..';
+  randomMassive[randomIndex] = '..';
   const question = randomMassive.join(' ');
   return [question, correctAnswer];
 };
