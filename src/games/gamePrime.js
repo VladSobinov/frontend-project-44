@@ -2,7 +2,10 @@ import gameBody from '../index.js';
 import getRandomNumber from '../utils.js';
 
 const isPrime = (number) => {
-  for (let a = 2, b = Math.sqrt(number); a <= b; a += 1) {
+  if (number === 0 || number === 1) {
+    return false;
+  }
+  for (let a = 2; a <= Math.sqrt(number); a += 1) {
     if (number % a === 0) return false;
   }
   return number > 1;

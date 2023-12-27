@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/VladSobinov/frontend-project-44/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/VladSobinov/frontend-project-44/actions)",
+  "description": "5 simple games to train your brain",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -19,7 +19,7 @@
     "brain-progression": "bin/brain-progression.js",
     "brain-prime": "bin/brain-prime.js"
   },
-  "author": "",
+  "author": "Vlad Sobinov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VladSobinov/frontend-project-44/issues"

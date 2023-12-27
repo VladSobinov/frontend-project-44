@@ -5,28 +5,22 @@ const gameDescription = 'What is the result of the expression?';
 
 const getRandomOperator = () => {
   const operators = ['+', '-', '*'];
-  const randomOp = operators[Math.floor(Math.random() * operators.length)];
+  const randomOp = operators[getRandomNumber(0, 2)];
 
   return randomOp;
 };
 
 const processCalculation = (number1, operator, number2) => {
-  let result;
   switch (operator) {
     case '+':
-      result = number1 + number2;
-      break;
+      return number1 + number2;
     case '-':
-      result = number1 - number2;
-      break;
+      return number1 - number2;
     case '*':
-      result = number1 * number2;
-      break;
+      return number1 * number2;
     default:
-      result = 0;
+      throw new Error('Unknown state!');
   }
-
-  return result;
 };
 
 const gameFunction = () => {
